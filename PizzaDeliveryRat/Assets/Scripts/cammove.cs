@@ -17,7 +17,9 @@ public class cammove : MonoBehaviour
     void Update()
     {
         //GetComponent<Rigidbody>().AddForce(0, 0, forwardForce * Time.deltaTime);
-        transform.Translate(0,0,1 * Time.deltaTime);
+        //transform.Translate(0,0,1 * Time.deltaTime);
 
+        transform.SetPositionAndRotation(new Vector3(0.0f,0.0f,transform.position.z), new Quaternion(0.0f, 0.0f, 0.0f, 1));
+        
     }
 }

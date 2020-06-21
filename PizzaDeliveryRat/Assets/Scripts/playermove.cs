@@ -11,12 +11,6 @@ public class playermove : MonoBehaviour
     public float ragdollTime;
     public float ragdollCooldown;
 
-
-    void Awake(){
-        
-  
-    }
-
     // Start is called before the first frame update
     void Start(){
         MainCollider = GetComponent<Collider>();
@@ -29,9 +23,10 @@ public class playermove : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
+        // Only allow movement if player is not ragdolling
         if(ragdollTime <= 0.0f){
            
-            Debug.Log("Stopped ragdoll");
+            //Debug.Log("Stopped ragdoll");
             DoRagdoll(false);
 
             //translate based on key inputs. Move as long as key is pressed down
@@ -61,7 +56,7 @@ public class playermove : MonoBehaviour
         GetComponent<Animator>().enabled = !isRagdoll;
 
         if(isRagdoll && ragdollTime <= 0.0f){
-            Debug.Log("Started ragdoll");
+            //Debug.Log("Started ragdoll");
             ragdollTime = 100.0f;
             ragdollCooldown = 200.0f;
         }

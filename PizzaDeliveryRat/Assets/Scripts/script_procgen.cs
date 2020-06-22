@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProcGen : MonoBehaviour {
+public class script_procgen : MonoBehaviour {
 
     public Transform[] chunks;
     public int MAX_LEVEL_SIZE;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playermove : MonoBehaviour
+public class script_player_move : MonoBehaviour
 {
     public Rigidbody rb;
     public float jumpHeight=15;

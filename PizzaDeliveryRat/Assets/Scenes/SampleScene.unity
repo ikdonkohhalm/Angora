@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &34068089
 RectTransform:
   m_ObjectHideFlags: 0
@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 72012921}
   - component: {fileID: 72012920}
   m_Layer: 0
-  m_Name: GM
+  m_Name: ChunkGeneration
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -240,11 +240,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chunks:
-  - {fileID: 8947157815167873340, guid: 96e7947c89b74b244afc1feff59627d5, type: 3}
-  - {fileID: 8731982247433265560, guid: dc829de7d05900048b945f0e7d3d74ae, type: 3}
-  - {fileID: 4222577881049340393, guid: f3ad0f95f5842e14bb345ed0ef631877, type: 3}
-  - {fileID: 7807165640980116370, guid: 781b085e429ef5b46af0ab9d1494dc21, type: 3}
-  - {fileID: 8160072757975248695, guid: b8a0ab55b3ac0f24faca1e6637f1fd13, type: 3}
+  - {fileID: 5482039035083193295, guid: 96e7947c89b74b244afc1feff59627d5, type: 3}
+  - {fileID: 6238902349624860509, guid: dc829de7d05900048b945f0e7d3d74ae, type: 3}
+  - {fileID: 2384579313964536183, guid: 681eb3eebd6c1b942b4a4468849a0a83, type: 3}
+  - {fileID: 6384346393959597703, guid: 4924112c138a54f429ac27c6bc78587c, type: 3}
+  - {fileID: 1645028139328370474, guid: 6f5b7cc56b1875f4f8468079daae4ae2, type: 3}
+  - {fileID: 8828648469247619935, guid: 4290e2b1f868f0f45a196cc6385c34aa, type: 3}
+  - {fileID: 5450736707276087512, guid: 8ef2b72241b07bd429e61fae88f20087, type: 3}
+  obstacles:
+  - {fileID: 8684290020558919568, guid: 6d978e7bbb7ee124685fe021f7c9c06e, type: 3}
+  - {fileID: 2503678530194626269, guid: da6ba716466f38447a3b3b152c581d7a, type: 3}
+  - {fileID: 9179724586951869963, guid: 49149d2ab83774a40bd60b9871fb3e15, type: 3}
+  - {fileID: 4012473896436810067, guid: 62881120da8056f49808247d629edcfc, type: 3}
+  - {fileID: 3375905567914906133, guid: e07670eba8365d845a06b7f2b2deede2, type: 3}
   MAX_LEVEL_SIZE: 100
 --- !u!4 &72012921
 Transform:
@@ -1730,7 +1738,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4490090376548836, guid: ff187f87b5b6b5e44a37a774ddaa7d47, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4490090376548836, guid: ff187f87b5b6b5e44a37a774ddaa7d47, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

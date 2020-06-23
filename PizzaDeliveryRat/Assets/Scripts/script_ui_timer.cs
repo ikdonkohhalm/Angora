@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class timer : MonoBehaviour
+public class script_ui_timer : MonoBehaviour
 {
     public Text timeText;
     private float gameTime = 0;

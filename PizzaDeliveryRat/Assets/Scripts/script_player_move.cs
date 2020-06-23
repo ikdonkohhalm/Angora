@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playermove : MonoBehaviour
+public class script_player_move : MonoBehaviour
 {
     public Rigidbody rb;
     public float jumpHeight=15;
@@ -10,6 +10,11 @@ public class playermove : MonoBehaviour
     public Collider[] AllColliders;
     public float ragdollTime;
     public float ragdollCooldown;
+    float totalScore;
+    float pizzaPoints = 1;
+
+    public script_ui_pizzatime linkToPizzaTimeScript;
+    public script_ui_score linkToScoreScript;
 
     // Start is called before the first frame update
     void Start(){
@@ -41,12 +46,23 @@ public class playermove : MonoBehaviour
                 //transform.Translate(0,jumpHeight * Time.deltaTime, 0);
                 rb.velocity= new Vector3(0, 10*jumpHeight * Time.deltaTime, 0);
             }
-            transform.Translate(0, 0, 1*Time.deltaTime);
+            if (Input.GetKeyUp("space")){ // Pizza time
+                pizzaTime();
+               
             }
-            ragdollTime -= 0.1f;
-            ragdollCooldown -= 0.1f;
+
+            // Move forward constantly
+            transform.Translate(0, 0, 1*Time.deltaTime);
+        }
+        // Decrement ragdoll timers by 0.1 each frame
+        ragdollTime -= 0.1f;
+        ragdollCooldown -= 0.1f;
     }
 
+    // <summary>
+    // Enters or exits ragdoll mode.
+    // <param name="isRagdoll"> True if entering ragdoll mode, false if exiting ragdoll mode
+    // </summary>
     public void DoRagdoll(bool isRagdoll){
         // Enable each collider if we're in ragdoll mode.
         foreach(var col in AllColliders)
@@ -62,11 +78,15 @@ public class playermove : MonoBehaviour
         }
         
     }
-
     void OnCollisionEnter(Collision collision){
         if(collision.gameObject.tag == "Obstacle" && ragdollCooldown <= 0.0f){
             DoRagdoll(true);
         }
-
+    }
+    
+    void pizzaTime(){
+        totalScore += pizzaPoints * linkToPizzaTimeScript.toggle();
+        Debug.Log("Score = " + totalScore);
+        linkToScoreScript.update(totalScore);
     }
 }

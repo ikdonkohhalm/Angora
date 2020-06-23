@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class cammove : MonoBehaviour
+public class script_camera_move : MonoBehaviour
 {
     public float forwardForce = 400;
 

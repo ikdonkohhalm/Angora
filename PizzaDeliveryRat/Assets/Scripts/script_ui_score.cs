@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class script_ui_mainmenu : MonoBehaviour
+public class script_ui_score : MonoBehaviour
 {
+    public Text scoreText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +19,7 @@ public class script_ui_mainmenu : MonoBehaviour
         
     }
 
-    public void PlayGame(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    public void update(float score){
+        scoreText.text = "Score: " + score.ToString();
     }
 }

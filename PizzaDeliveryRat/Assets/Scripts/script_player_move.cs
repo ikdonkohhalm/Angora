@@ -12,6 +12,7 @@ public class script_player_move : MonoBehaviour
     public float ragdollCooldown;
     float totalScore;
     float pizzaPoints = 1;
+    public float speed = 2;
 
     public script_ui_pizzatime linkToPizzaTimeScript;
     public script_ui_score linkToScoreScript;
@@ -36,15 +37,16 @@ public class script_player_move : MonoBehaviour
 
             //translate based on key inputs. Move as long as key is pressed down
             if (Input.GetKey("a")){
-                transform.Translate(-1 * Time.deltaTime, 0, 0);
+                transform.Translate(-1* speed * Time.deltaTime, 0, 0);
             }
             if (Input.GetKey("d")){
-                transform.Translate(1 * Time.deltaTime, 0, 0);
+                transform.Translate(speed * Time.deltaTime, 0, 0);
 
             }
             if (Input.GetKeyDown("w")){
                 //transform.Translate(0,jumpHeight * Time.deltaTime, 0);
-                rb.velocity= new Vector3(0, 10*jumpHeight * Time.deltaTime, 0);
+                //rb.velocity= new Vector3(0, 10*jumpHeight * Time.deltaTime, 0);
+                rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
             }
             if (Input.GetKeyUp("space")){ // Pizza time
                 pizzaTime();
@@ -52,7 +54,7 @@ public class script_player_move : MonoBehaviour
             }
 
             // Move forward constantly
-            transform.Translate(0, 0, 1*Time.deltaTime);
+            transform.Translate(0, 0, speed*Time.deltaTime);
         }
         // Decrement ragdoll timers by 0.1 each frame
         ragdollTime -= 0.1f;

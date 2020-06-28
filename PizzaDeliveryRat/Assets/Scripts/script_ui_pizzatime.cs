@@ -7,6 +7,7 @@ public class script_ui_pizzatime : MonoBehaviour
     string feedback;
     float scoreMult;
     public bool pizzaTime = false;
+    public float slowdownFactor = 0.3f;
 
 
     // Start is called before the first frame update
@@ -31,12 +32,14 @@ public class script_ui_pizzatime : MonoBehaviour
             // Enable the parent object, and this object (the cursor).
             this.transform.parent.gameObject.SetActive(true);
             Debug.Log("Active =" + this.transform.parent.gameObject.activeInHierarchy);
+            Time.timeScale = slowdownFactor;
             return 0.0f;
         }
         else{
             pizzaTime = false;
             setMultiplier();
             this.transform.parent.gameObject.SetActive(false);
+            Time.timeScale = 1;
             return scoreMult;
         }
         

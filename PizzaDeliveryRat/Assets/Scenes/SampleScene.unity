@@ -210,6 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pizzaTime: 0
+  slowdownFactor: 0.5
 --- !u!1 &72012919
 GameObject:
   m_ObjectHideFlags: 0
@@ -2694,7 +2695,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 369.81, y: 252.1}
+  m_AnchoredPosition: {x: 319.81, y: 165}
   m_SizeDelta: {x: 272.38562, y: 60.142807}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &959584013
@@ -2762,6 +2763,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2828,12 +2830,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.15483004, y: -0.53989947, z: 0.15326452, w: 0.81304747}
-  m_LocalPosition: {x: 4.81, y: 3.48, z: -0.69000006}
+  m_LocalPosition: {x: 4.81, y: 4.166, z: -2.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1265521159}
-  m_RootOrder: 2
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 24.662, y: -66.039, z: 5.1790004}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa67c45b9e6ebad46831b1d6353a5be8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forwardForce: 400
+  player: {fileID: 1265521159}
 --- !u!1 &1153912900 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1369838856013524, guid: ff187f87b5b6b5e44a37a774ddaa7d47,
@@ -3072,11 +3088,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  jumpHeight: 15
+  jumpHeight: 6
   MainCollider: {fileID: 0}
   AllColliders: []
   ragdollTime: 0
   ragdollCooldown: 0
+  speed: 4
   linkToPizzaTimeScript: {fileID: 1619602439}
   linkToScoreScript: {fileID: 959584013}
 --- !u!136 &1265521162
@@ -3281,6 +3298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pizzaTime: 0
+  slowdownFactor: 0.5
 --- !u!1 &2078910964 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1023571476144908, guid: ff187f87b5b6b5e44a37a774ddaa7d47,

@@ -57,6 +57,11 @@ public class script_player_move : MonoBehaviour
         // Decrement ragdoll timers by 0.1 each frame
         ragdollTime -= 0.1f;
         ragdollCooldown -= 0.1f;
+
+        if(this.transform.position.y < 1){
+            this.transform.position = new Vector3(this.transform.position.x, 1.5f, this.transform.position.z);
+            //this.transform.Translate(new Vector3(0,1,0));
+        }
     }
 
     // <summary>
@@ -74,12 +79,13 @@ public class script_player_move : MonoBehaviour
         if(isRagdoll && ragdollTime <= 0.0f){
             //Debug.Log("Started ragdoll");
             ragdollTime = 100.0f;
-            ragdollCooldown = 200.0f;
+            ragdollCooldown = 500.0f;
         }
         
     }
     void OnCollisionEnter(Collision collision){
         if(collision.gameObject.tag == "Obstacle" && ragdollCooldown <= 0.0f){
+            Debug.Log("Entering Ragdoll");
             DoRagdoll(true);
         }
     }

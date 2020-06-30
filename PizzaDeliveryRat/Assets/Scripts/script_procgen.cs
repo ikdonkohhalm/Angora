@@ -18,6 +18,8 @@ public class script_procgen : MonoBehaviour {
     private float deltaLocZ;
     private int amtHouse;
 
+    public GameObject groundChunk;
+
     // Start is called before the first frame update
     void Start() {
         FillMap();
@@ -25,6 +27,7 @@ public class script_procgen : MonoBehaviour {
         deltaLocX = chunkMap["start"].GetComponent<BoxCollider>().size.x * chunkMap["start"].GetComponent<Transform>().localScale.x;
         deltaLocY = chunkMap["start"].GetComponent<BoxCollider>().size.y * chunkMap["start"].GetComponent<Transform>().localScale.y;
         deltaLocZ = chunkMap["start"].GetComponent<BoxCollider>().size.z * chunkMap["start"].GetComponent<Transform>().localScale.z;
+
         chunkLoc.x -= deltaLocX;
 
         StartCoroutine(spawnChunkSegment());
@@ -45,12 +48,14 @@ public class script_procgen : MonoBehaviour {
             chunkLoc.x += deltaLocX;
         }
         chunkLoc.x -= deltaLocX * 3;
-        chunkLoc.y += deltaLocY;
 
-        if(count != 0 && count <= MAX_LEVEL_SIZE)
-            Instantiate(chunkMap["house_" + Random.Range(0, amtHouse).ToString()], chunkLoc, ZERO_QUAT);
+        if(count != 0 && count <= MAX_LEVEL_SIZE){
+            GameObject house = chunkMap["house_" + Random.Range(0, amtHouse).ToString()];
+            chunkLoc.y += (deltaLocY / 2) + (house.GetComponent<BoxCollider>().size.y * house.GetComponent<Transform>().localScale.y) / 2;
+            Instantiate(house, chunkLoc, ZERO_QUAT);
+            chunkLoc.y = 0;
+        }
 
-        chunkLoc.y -= deltaLocY;
         chunkLoc.z += deltaLocZ;
         count++;
         
@@ -108,23 +113,55 @@ public class script_procgen : MonoBehaviour {
         difficulty += 1/MAX_LEVEL_SIZE; //difficulty needs to be calculated better
     }
 
+    /* Spawning obstacles within bounds: for formations first get the list of children
+       for each object in list or individual object in obstacle
+            if objects leftmost side less than left
+                left = currobject left
+                  
+    */
     void SpawnObstacles(){
         setDifficulty();
 
         //determine chunk borders
         Vector3 spawn = new Vector3(0.0f, 0.0f, 0.0f);
-        float left = chunkLoc.x - deltaLocX/2;
-        float right = chunkLoc.x + deltaLocX/2;
-        float front = chunkLoc.z + deltaLocZ/2;
-        float back = chunkLoc.z - deltaLocZ/2;
+        GameObject currObst;
+        float left = chunkLoc.x - deltaLocX / 2;
+        float right = chunkLoc.x + deltaLocX / 2;
+        float front = chunkLoc.z + deltaLocZ / 2;
+        float back = chunkLoc.z - deltaLocZ / 2;
 
         int numObst = 2; //this should be changed with difficulty
         for(int i = 0; i < numObst; i++){
+            currObst = obstMap[getObstName()];
+            getObstacleBounds(currObst);
             spawn.x = Random.Range(left, right);
-            spawn.y = chunkLoc.y + deltaLocY;
+            spawn.y = chunkLoc.y + deltaLocY + 3;
             spawn.z = Random.Range(back, front);
-            Instantiate(obstMap[getObstName()], spawn, ZERO_QUAT);
+
+            Instantiate(currObst, spawn, ZERO_QUAT);
         }
+    }
+
+    Vector3 getObstacleBounds(GameObject obst){
+        // Transform[] obsts;
+
+        // float left = 0;
+        // float right = 0;
+
+        // if(obst.name.Substring(0, 5) == "form_"){
+        //     for(int i = 0; i < obst.transform.childCount; i++){
+        //         obsts[i] = obst.transform.GetChild(i);
+        //     }
+        // } else {
+        //     obsts[0] = obst.transform;
+        // }
+
+        //check for BoxCollider, CapsuleCollider, or SphereCollider
+        // for(int i = 0; i < obsts.Length; i++){
+        //     if (obsts[i])
+        // }
+
+        return new Vector3(0,0,0);
     }
 
     string getObstName(){

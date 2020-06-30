@@ -13,6 +13,7 @@ public class script_player_move : MonoBehaviour
     float totalScore;
     float pizzaPoints = 1;
     public float speed = 2;
+    public bool ragdoll;
 
     public script_ui_pizzatime linkToPizzaTimeScript;
     public script_ui_score linkToScoreScript;
@@ -31,9 +32,12 @@ public class script_player_move : MonoBehaviour
     void Update(){
         // Only allow movement if player is not ragdolling
         if(ragdollTime <= 0.0f){
-           
-            //Debug.Log("Stopped ragdoll");
-            DoRagdoll(false);
+           if(ragdoll){
+                Debug.Log("Stopped ragdoll");
+                DoRagdoll(false);
+                
+           }
+            this.transform.rotation = new Quaternion(0,0,0,1);
 
             //translate based on key inputs. Move as long as key is pressed down
             if (Input.GetKey("a")){
@@ -57,8 +61,8 @@ public class script_player_move : MonoBehaviour
             transform.Translate(0, 0, speed*Time.deltaTime);
         }
         // Decrement ragdoll timers by 0.1 each frame
-        ragdollTime -= 0.1f;
-        ragdollCooldown -= 0.1f;
+        ragdollTime -= 1.0f;
+        ragdollCooldown -= 1.0f;
 
         if(this.transform.position.y < 1){
             this.transform.position = new Vector3(this.transform.position.x, 1.5f, this.transform.position.z);
@@ -77,13 +81,16 @@ public class script_player_move : MonoBehaviour
         MainCollider.enabled = !isRagdoll;
         rb.useGravity = !isRagdoll;
         GetComponent<Animator>().enabled = !isRagdoll;
+        //rb.isKinematic = !isRagdoll;
+        rb.maxDepenetrationVelocity = 0.001f;
 
         if(isRagdoll && ragdollTime <= 0.0f){
             //Debug.Log("Started ragdoll");
-            ragdollTime = 100.0f;
-            ragdollCooldown = 500.0f;
+            ragdollTime = 300.0f;
+            ragdollCooldown = 600.0f;
+            
         }
-        
+        ragdoll = isRagdoll;
     }
     void OnCollisionEnter(Collision collision){
         if(collision.gameObject.tag == "Obstacle" && ragdollCooldown <= 0.0f){

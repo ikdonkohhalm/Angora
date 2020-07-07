@@ -8,11 +8,12 @@ public class script_player_move : MonoBehaviour
     public float jumpHeight=15;
     public Collider MainCollider;
     public Collider[] AllColliders;
+    public MeshRenderer meshRenderer;
     public float ragdollTime;
     public float ragdollCooldown;
     float totalScore;
     float pizzaPoints = 1;
-    public float speed = 2;
+    public float speed = 5;
     public bool ragdoll;
 
     public script_ui_pizzatime linkToPizzaTimeScript;
@@ -23,6 +24,7 @@ public class script_player_move : MonoBehaviour
         MainCollider = GetComponent<Collider>();
         AllColliders = GetComponentsInChildren<Collider>(true);
         rb = gameObject.GetComponent<Rigidbody>();
+        meshRenderer = GetComponent<MeshRenderer>();
         DoRagdoll(false);
         ragdollTime = 0.0f;
         ragdollCooldown = 0.0f;
@@ -68,6 +70,7 @@ public class script_player_move : MonoBehaviour
             this.transform.position = new Vector3(this.transform.position.x, 1.5f, this.transform.position.z);
             //this.transform.Translate(new Vector3(0,1,0));
         }
+        //if(meshRenderer.transform.position.y <)
     }
 
     // <summary>
@@ -78,7 +81,7 @@ public class script_player_move : MonoBehaviour
         // Enable each collider if we're in ragdoll mode.
         foreach(var col in AllColliders)
             col.enabled = isRagdoll;
-        MainCollider.enabled = !isRagdoll;
+        MainCollider.enabled = true;
         rb.useGravity = !isRagdoll;
         GetComponent<Animator>().enabled = !isRagdoll;
         //rb.isKinematic = !isRagdoll;

@@ -105,6 +105,7 @@ public class script_player_move : MonoBehaviour
 
     void OnTriggerEnter(Collider collider){
         if(collider.tag == "Pizza"){
+            Debug.Log("Pizza Trigger");
             pizzaTime();
         }
     }

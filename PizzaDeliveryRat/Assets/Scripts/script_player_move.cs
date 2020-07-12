@@ -13,9 +13,12 @@ public class script_player_move : MonoBehaviour
     float totalScore;
     float pizzaPoints = 1;
     public float speed = 2;
+    public bool finished = false;
 
     public script_ui_pizzatime linkToPizzaTimeScript;
     public script_ui_score linkToScoreScript;
+    public script_ui_mainmenu linkToMenuScript;
+
 
     // Start is called before the first frame update
     void Start(){
@@ -83,6 +86,20 @@ public class script_player_move : MonoBehaviour
     void OnCollisionEnter(Collision collision){
         if(collision.gameObject.tag == "Obstacle" && ragdollCooldown <= 0.0f){
             DoRagdoll(true);
+        }
+        if(collision.gameObject.tag == "Finish" & !finished){
+            //calculate score based on time
+            float finishScore = 100- Time.time;
+            if (finishScore < 0){
+                finishScore = 0;
+            }
+            speed = 0;
+            totalScore += finishScore;
+            Debug.Log("Score = " + totalScore);
+            linkToScoreScript.update(totalScore);
+            linkToMenuScript.isFinished =true;
+            //Time.timeScale = 0;
+            finished = true;
         }
     }
     

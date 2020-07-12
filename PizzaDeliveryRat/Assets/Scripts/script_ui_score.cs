@@ -20,6 +20,7 @@ public class script_ui_score : MonoBehaviour
     }
 
     public void update(float score){
+        Debug.Log("Score Change = " + score);
         scoreText.text = "Score: " + score.ToString();
     }
 }

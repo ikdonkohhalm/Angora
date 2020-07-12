@@ -13,7 +13,7 @@ public class script_player_move : MonoBehaviour
     public float ragdollCooldown;
     float totalScore;
     float pizzaPoints = 1;
-    public float speed = 5;
+    public float speed = 2;
     public bool ragdoll;
 
     public script_ui_pizzatime linkToPizzaTimeScript;
@@ -81,7 +81,7 @@ public class script_player_move : MonoBehaviour
         // Enable each collider if we're in ragdoll mode.
         foreach(var col in AllColliders)
             col.enabled = isRagdoll;
-        MainCollider.enabled = true;
+        MainCollider.enabled = !isRagdoll;
         rb.useGravity = !isRagdoll;
         GetComponent<Animator>().enabled = !isRagdoll;
         //rb.isKinematic = !isRagdoll;
@@ -95,10 +95,17 @@ public class script_player_move : MonoBehaviour
         }
         ragdoll = isRagdoll;
     }
+
     void OnCollisionEnter(Collision collision){
         if(collision.gameObject.tag == "Obstacle" && ragdollCooldown <= 0.0f){
             Debug.Log("Entering Ragdoll");
             DoRagdoll(true);
+        }
+    }
+
+    void OnTriggerEnter(Collider collider){
+        if(collider.tag == "Pizza"){
+            pizzaTime();
         }
     }
     

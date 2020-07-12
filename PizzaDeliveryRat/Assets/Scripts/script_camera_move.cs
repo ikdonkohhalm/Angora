@@ -22,7 +22,7 @@ public class script_camera_move : MonoBehaviour
 
         //transform.SetPositionAndRotation(new Vector3(0.0f,0.0f,transform.position.z), new Quaternion(0.0f, 0.0f, 0.0f, 1));
         //transform.position = new Vector3(player.position.x, transform.position.y, transform.position.z);
-        transform.position = new Vector3(transform.position.x, transform.position.y, player.position.z-5);
+        transform.position = new Vector3(7.0f, player.position.y+4, player.position.z+1);
 
     }
 }

@@ -8,6 +8,7 @@ public class script_ui_mainmenu : MonoBehaviour
     public bool isPaused;
     public GameObject pauseMenuUI;
     public GameObject endMenuUI;
+    public GameObject panelUI;
     public bool isFinished = false;
     //GameObject go = GameObject.Find("prefab_player");
     //Script cs = go.GetComponent<script_player_move>();
@@ -56,7 +57,12 @@ public class script_ui_mainmenu : MonoBehaviour
 
     //when button is clicked resart the game scene
     public void RestartGame(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
+
+        endMenuUI.SetActive(false);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Application.LoadLevel(SceneManager.GetActiveScene().name);
+//        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     //activate pause menu
@@ -76,6 +82,7 @@ public class script_ui_mainmenu : MonoBehaviour
 
     public void activateEndMenu(){
         pauseMenuUI.SetActive(false);
+        panelUI.SetActive(false);
         endMenuUI.SetActive(true);
         Time.timeScale = 0;
     }

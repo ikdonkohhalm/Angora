@@ -17,17 +17,22 @@ public class script_player_move : MonoBehaviour
 
     public script_ui_pizzatime linkToPizzaTimeScript;
     public script_ui_score linkToScoreScript;
+    public script_ui_score linkToFinalScoreScript;
     public script_ui_mainmenu linkToMenuScript;
 
 
     // Start is called before the first frame update
     void Start(){
+        //void Awake() { 
+        Debug.Log("start move");
         MainCollider = GetComponent<Collider>();
         AllColliders = GetComponentsInChildren<Collider>(true);
         rb = gameObject.GetComponent<Rigidbody>();
         DoRagdoll(false);
         ragdollTime = 0.0f;
         ragdollCooldown = 0.0f;
+        Time.timeScale = 1;
+
     }
 
     // Update is called once per frame
@@ -89,14 +94,15 @@ public class script_player_move : MonoBehaviour
         }
         if(collision.gameObject.tag == "Finish" & !finished){
             //calculate score based on time
-            float finishScore = 100- Time.time;
+            float finishScore = 30- Time.time;
             if (finishScore < 0){
                 finishScore = 0;
             }
-            speed = 0;
             totalScore += finishScore;
             Debug.Log("Score = " + totalScore);
-            linkToScoreScript.update(totalScore);
+            linkToFinalScoreScript.update(totalScore);
+
+            speed = 0;
             linkToMenuScript.isFinished =true;
             //Time.timeScale = 0;
             finished = true;

@@ -16,7 +16,6 @@ public class script_ui_score : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void update(float score){

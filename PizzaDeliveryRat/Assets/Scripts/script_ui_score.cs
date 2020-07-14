@@ -16,10 +16,10 @@ public class script_ui_score : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void update(float score){
+        Debug.Log("Score Change = " + score);
         scoreText.text = "Score: " + score.ToString();
     }
 }

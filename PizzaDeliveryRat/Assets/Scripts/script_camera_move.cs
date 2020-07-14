@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class script_camera_move : MonoBehaviour
 {
-    public float forwardForce = 400;
+    public float camDistFromPlayer = 2.5f;
     public Transform player;
 
     // Start is called before the first frame update
@@ -12,6 +12,7 @@ public class script_camera_move : MonoBehaviour
     {
         //GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 2);
         player = GameObject.FindWithTag("Player").transform;
+        camDistFromPlayer = (transform.position.z- player.position.z);
     }
 
     // Update is called once per frame
@@ -22,7 +23,7 @@ public class script_camera_move : MonoBehaviour
 
         //transform.SetPositionAndRotation(new Vector3(0.0f,0.0f,transform.position.z), new Quaternion(0.0f, 0.0f, 0.0f, 1));
         //transform.position = new Vector3(player.position.x, transform.position.y, transform.position.z);
-        transform.position = new Vector3(7.0f, player.position.y+4, player.position.z+1);
+        transform.position = new Vector3(transform.position.x, transform.position.y, player.position.z+camDistFromPlayer);
 
     }
 }

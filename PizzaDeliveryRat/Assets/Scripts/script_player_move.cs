@@ -5,7 +5,7 @@ using UnityEngine;
 public class script_player_move : MonoBehaviour
 {
     public Rigidbody rb;
-    public float jumpHeight=15;
+    public float jumpHeight = 15;
     public Collider MainCollider;
     public Collider[] AllColliders;
     public MeshRenderer meshRenderer;
@@ -13,14 +13,20 @@ public class script_player_move : MonoBehaviour
     public float ragdollCooldown;
     float totalScore;
     float pizzaPoints = 1;
-    public float speed = 5;
+    public float speed = 2;
+    public bool finished = false;
     public bool ragdoll;
 
     public script_ui_pizzatime linkToPizzaTimeScript;
     public script_ui_score linkToScoreScript;
+    public script_ui_score linkToFinalScoreScript;
+    public script_ui_mainmenu linkToMenuScript;
+
 
     // Start is called before the first frame update
     void Start(){
+        //void Awake() { 
+        Debug.Log("start move");
         MainCollider = GetComponent<Collider>();
         AllColliders = GetComponentsInChildren<Collider>(true);
         rb = gameObject.GetComponent<Rigidbody>();
@@ -28,6 +34,8 @@ public class script_player_move : MonoBehaviour
         DoRagdoll(false);
         ragdollTime = 0.0f;
         ragdollCooldown = 0.0f;
+        Time.timeScale = 1;
+
     }
 
     // Update is called once per frame
@@ -81,7 +89,7 @@ public class script_player_move : MonoBehaviour
         // Enable each collider if we're in ragdoll mode.
         foreach(var col in AllColliders)
             col.enabled = isRagdoll;
-        MainCollider.enabled = true;
+        MainCollider.enabled = !isRagdoll;
         rb.useGravity = !isRagdoll;
         GetComponent<Animator>().enabled = !isRagdoll;
         //rb.isKinematic = !isRagdoll;
@@ -95,10 +103,33 @@ public class script_player_move : MonoBehaviour
         }
         ragdoll = isRagdoll;
     }
+
     void OnCollisionEnter(Collision collision){
         if(collision.gameObject.tag == "Obstacle" && ragdollCooldown <= 0.0f){
             Debug.Log("Entering Ragdoll");
             DoRagdoll(true);
+        }
+        if(collision.gameObject.tag == "Finish" & !finished){
+            //calculate score based on time
+            float finishScore = 100- Time.time;
+            if (finishScore < 0){
+                finishScore = 0;
+            }
+            totalScore += finishScore;
+            Debug.Log("Score = " + totalScore);
+            linkToFinalScoreScript.update(totalScore);
+
+            speed = 0;
+            linkToMenuScript.isFinished =true;
+            //Time.timeScale = 0;
+            finished = true;
+        }
+    }
+
+    void OnTriggerEnter(Collider collider){
+        if(collider.tag == "Pizza"){
+            Debug.Log("Pizza Trigger");
+            pizzaTime();
         }
     }
     

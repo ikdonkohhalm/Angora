@@ -12,6 +12,7 @@ public class script_camera_move : MonoBehaviour
     {
         //GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 2);
         player = GameObject.FindWithTag("Player").transform;
+        camDistFromPlayer = (transform.position.z- player.position.z);
     }
 
     // Update is called once per frame

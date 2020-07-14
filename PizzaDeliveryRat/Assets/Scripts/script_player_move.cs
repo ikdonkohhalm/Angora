@@ -111,7 +111,7 @@ public class script_player_move : MonoBehaviour
         }
         if(collision.gameObject.tag == "Finish" & !finished){
             //calculate score based on time
-            float finishScore = 30- Time.time;
+            float finishScore = 100- Time.time;
             if (finishScore < 0){
                 finishScore = 0;
             }

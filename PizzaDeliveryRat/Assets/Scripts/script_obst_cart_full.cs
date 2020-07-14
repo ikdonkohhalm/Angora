@@ -17,9 +17,13 @@ public class script_obst_cart_full: MonoBehaviour
     }
 
     void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.tag == "Player") {
-            gameObject.AddComponent<Rigidbody>();
-            this.GetComponent<MeshCollider>().convex = true;
+        if (!this.GetComponent<Rigidbody>()){
+            if (collision.gameObject.tag == "Player") {
+                this.GetComponent<MeshCollider>().convex = true;
+                Debug.Log(this.GetComponent<MeshCollider>().convex);
+                gameObject.AddComponent<Rigidbody>();
+                this.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+            }
         }
     }
 

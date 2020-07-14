@@ -167,10 +167,8 @@ public class script_procgen : MonoBehaviour {
 
             //Spawn the obstacle within the bounds of the chunk including the current obstacles dimensions
             spawn.x = Random.Range(left - obstBounds.l + 0.1f, right - obstBounds.r - 0.1f); 
-            Debug.Log("Current Obstacle: " + currObst.name + ". Lower bound: " + obstBounds.b);
             spawn.y = (deltaLocY / 2) + obstBounds.b;
             spawn.z = Random.Range(back, front);
-            Debug.Log("deltaLocY: " + deltaLocY + ". Spawn: " + spawn.y);
             Instantiate(currObst, spawn, ZERO_QUAT);
         }
     }

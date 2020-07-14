@@ -406,15 +406,13 @@ MonoBehaviour:
   - {fileID: 6771838359468683354, guid: 4924112c138a54f429ac27c6bc78587c, type: 3}
   - {fileID: 6231892432464839108, guid: 8ef2b72241b07bd429e61fae88f20087, type: 3}
   obstacles:
-  - {fileID: 4708137884909300356, guid: 1e118756b8cb7664da164a33c96286bf, type: 3}
+  - {fileID: 8011950119853555136, guid: 6386c2b88754bf540bf473e247924212, type: 3}
+  - {fileID: 3017760806369441270, guid: 0fe26438d4895e849b5999a0acd0c709, type: 3}
   - {fileID: 2459229473548287206, guid: e9826d7db6b52f64db964500a88fb580, type: 3}
+  - {fileID: 4708137884909300356, guid: 1e118756b8cb7664da164a33c96286bf, type: 3}
   - {fileID: 4718430160060934140, guid: eaa0c0dc3e2e6944ca31dbab501e97cd, type: 3}
   - {fileID: 2407813854464489367, guid: 456f3de7e2199fb4da0b8a6a43f117b1, type: 3}
-  - {fileID: 3375905567914906133, guid: e07670eba8365d845a06b7f2b2deede2, type: 3}
-  - {fileID: 8011950119853555136, guid: 6386c2b88754bf540bf473e247924212, type: 3}
-  - {fileID: 8739997054261819436, guid: 4a440835177cca741a4c5a21157ae865, type: 3}
-  - {fileID: 3017760806369441270, guid: 0fe26438d4895e849b5999a0acd0c709, type: 3}
-  MAX_LEVEL_SIZE: 20
+  MAX_LEVEL_SIZE: 30
 --- !u!4 &72012921
 Transform:
   m_ObjectHideFlags: 0
@@ -3956,10 +3954,10 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.01
+  near clip plane: -10
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:

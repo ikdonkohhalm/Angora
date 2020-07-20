@@ -7,6 +7,7 @@ public class script_procgen : MonoBehaviour {
     public GameObject[] chunks; //Array of chunk_ and chunk_house_ files that are generated into the world
     public GameObject[] obstacles; //Array of obst_ and form_ files that are spawned as obstacles
     public int MAX_LEVEL_SIZE;
+    public float newChunkThreshold;
 
     private Dictionary<string, GameObject> chunkMap = new Dictionary<string, GameObject>(); //Hashmap of chunks
     private Dictionary<string, GameObject> obstMap = new Dictionary<string, GameObject>(); //Hashmap of obstacles
@@ -32,7 +33,9 @@ public class script_procgen : MonoBehaviour {
 
         chunkLoc.x -= deltaLocX;
 
-        StartCoroutine(spawnChunkSegment());
+        newChunkThreshold = chunkLoc.z - (deltaLocZ * 2);
+        spawnChunkSegment();
+        spawnChunkSegment();
     }
 
     // Update is called once per frame
@@ -44,7 +47,10 @@ public class script_procgen : MonoBehaviour {
     /// Instantiates 3 sequential chunks (grass, road, grass) along the X axis in the world
     /// Instantiates a random house on top of the grass chunks
     ///</summary>
-    IEnumerator spawnChunkSegment() {
+    public void spawnChunkSegment() {
+        if(count > MAX_LEVEL_SIZE + 1)
+            return;
+
         setDifficulty();
 
         string chunkName = "";
@@ -80,12 +86,7 @@ public class script_procgen : MonoBehaviour {
 
         chunkLoc.z += deltaLocZ;
         count++;
-        
-        //This restarts the spawnChunkSegment after 1/4 second
-        //TODO: Change this to happen when the player leaves a chunk
-        yield return new WaitForSeconds(0.25f);        
-        if(count <= MAX_LEVEL_SIZE + 1)
-            StartCoroutine(spawnChunkSegment());
+        newChunkThreshold += deltaLocZ;
     }
 
     /// <summary>

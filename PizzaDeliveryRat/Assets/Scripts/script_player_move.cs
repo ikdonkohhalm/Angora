@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class script_player_move : MonoBehaviour
 {
+    public script_procgen procgen;
+
     public Rigidbody rb;
     public float jumpHeight = 15;
     public Collider MainCollider;
@@ -79,6 +81,9 @@ public class script_player_move : MonoBehaviour
             //this.transform.Translate(new Vector3(0,1,0));
         }
         //if(meshRenderer.transform.position.y <)
+
+        if(this.transform.position.z > procgen.newChunkThreshold)
+            procgen.spawnChunkSegment();
     }
 
     // <summary>

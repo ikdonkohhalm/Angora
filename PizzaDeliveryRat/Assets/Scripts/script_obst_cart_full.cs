@@ -23,6 +23,7 @@ public class script_obst_cart_full: MonoBehaviour
                 Debug.Log(this.GetComponent<MeshCollider>().convex);
                 gameObject.AddComponent<Rigidbody>();
                 this.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+                this.GetComponent<Rigidbody>().mass = 0.25f;
             }
         }
     }

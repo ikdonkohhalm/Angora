@@ -17,10 +17,13 @@ public class script_player_move : MonoBehaviour
     public bool finished = false;
     public bool ragdoll;
 
+    private int nextPoint = 10; //next z point were score is increased
+
     public script_ui_pizzatime linkToPizzaTimeScript;
     public script_ui_score linkToScoreScript;
     public script_ui_score linkToFinalScoreScript;
     public script_ui_mainmenu linkToMenuScript;
+    public script_ui_timer linkToTimerScript;
 
 
     // Start is called before the first frame update
@@ -78,7 +81,36 @@ public class script_player_move : MonoBehaviour
             this.transform.position = new Vector3(this.transform.position.x, 1.5f, this.transform.position.z);
             //this.transform.Translate(new Vector3(0,1,0));
         }
+        
+        if(this.transform.position.z >= nextPoint )
+        {
+            totalScore += 2;
+            Debug.Log("POSITION CHANGE Score = " + totalScore);
+            linkToScoreScript.update(totalScore);
+            nextPoint += 10;
+        }
         //if(meshRenderer.transform.position.y <)
+
+        if (linkToTimerScript.getTimeDone() & !finished)
+        {
+            //calculate score based on time
+            /*
+            float finishScore = 100 - Time.time;
+            if (finishScore < 0)
+            {
+                finishScore = 0;
+            }
+            */
+            //totalScore += finishScore;
+            Debug.Log("Score = " + totalScore);
+            linkToFinalScoreScript.update(totalScore);
+            
+
+            speed = 0;
+            linkToMenuScript.isFinished = true;
+            //Time.timeScale = 0;
+            finished = true;
+        }
     }
 
     // <summary>
@@ -109,6 +141,7 @@ public class script_player_move : MonoBehaviour
             Debug.Log("Entering Ragdoll");
             DoRagdoll(true);
         }
+        /*
         if(collision.gameObject.tag == "Finish" & !finished){
             //calculate score based on time
             float finishScore = 100- Time.time;
@@ -124,6 +157,7 @@ public class script_player_move : MonoBehaviour
             //Time.timeScale = 0;
             finished = true;
         }
+        */
     }
 
     void OnTriggerEnter(Collider collider){

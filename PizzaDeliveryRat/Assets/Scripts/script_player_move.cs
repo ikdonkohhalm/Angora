@@ -112,7 +112,7 @@ public class script_player_move : MonoBehaviour
     void OnCollisionEnter(Collision collision){
         if(collision.gameObject.tag == "Obstacle" && ragdollCooldown <= 0.0f){
             Debug.Log("Entering Ragdoll");
-            DoRagdoll(true);
+            //DoRagdoll(true);
         }
         if(collision.gameObject.tag == "Finish" & !finished){
             //calculate score based on time

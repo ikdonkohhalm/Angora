@@ -79,8 +79,8 @@ public class script_procgen : MonoBehaviour {
         //Spawn house on the left grass chunk
         if(count != 0 && count <= MAX_LEVEL_SIZE){
             GameObject house = chunkMap["house_" + Random.Range(0, amtHouse).ToString()];
-            chunkLoc.y += (deltaLocY / 2) + (house.GetComponent<BoxCollider>().size.y * house.GetComponent<Transform>().localScale.y) / 2;
-            Instantiate(house, chunkLoc, ZERO_QUAT);
+            chunkLoc.y += (deltaLocY / 2); //+ (house.GetComponent<BoxCollider>().size.y * house.GetComponent<Transform>().localScale.y) / 2;
+            Instantiate(house, chunkLoc, house.transform.rotation);
             chunkLoc.y = 0;
         }
 

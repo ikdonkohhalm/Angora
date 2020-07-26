@@ -401,20 +401,21 @@ MonoBehaviour:
   - {fileID: 6238902349624860509, guid: dc829de7d05900048b945f0e7d3d74ae, type: 3}
   - {fileID: 2384579313964536183, guid: 681eb3eebd6c1b942b4a4468849a0a83, type: 3}
   - {fileID: 8780819296818738515, guid: 55c7ebb5dca6be84598d5b72055e7ce4, type: 3}
-  - {fileID: 6360613734672777675, guid: 6f5b7cc56b1875f4f8468079daae4ae2, type: 3}
   - {fileID: 8828648469247619935, guid: 4290e2b1f868f0f45a196cc6385c34aa, type: 3}
-  - {fileID: 6771838359468683354, guid: 4924112c138a54f429ac27c6bc78587c, type: 3}
-  - {fileID: 6231892432464839108, guid: 8ef2b72241b07bd429e61fae88f20087, type: 3}
+  - {fileID: 2252669158808167929, guid: 86240e946c4a5ce4e893b81877dbc642, type: 3}
+  - {fileID: 1067320561188869196, guid: 6319a1ecbe3b6354eadf920b2c2773da, type: 3}
+  - {fileID: 720125809710769632, guid: c1cba1ad0630e394a8befa38b70cea5f, type: 3}
+  - {fileID: 1202784078605746561, guid: d2896754109b75f41810a80462493c25, type: 3}
+  - {fileID: 7167747781817451184, guid: dcc7efcc8e8180d49abe3ba13952cade, type: 3}
   obstacles:
-  - {fileID: 4708137884909300356, guid: 1e118756b8cb7664da164a33c96286bf, type: 3}
+  - {fileID: 8011950119853555136, guid: 6386c2b88754bf540bf473e247924212, type: 3}
+  - {fileID: 3017760806369441270, guid: 0fe26438d4895e849b5999a0acd0c709, type: 3}
   - {fileID: 2459229473548287206, guid: e9826d7db6b52f64db964500a88fb580, type: 3}
+  - {fileID: 4708137884909300356, guid: 1e118756b8cb7664da164a33c96286bf, type: 3}
   - {fileID: 4718430160060934140, guid: eaa0c0dc3e2e6944ca31dbab501e97cd, type: 3}
   - {fileID: 2407813854464489367, guid: 456f3de7e2199fb4da0b8a6a43f117b1, type: 3}
-  - {fileID: 3375905567914906133, guid: e07670eba8365d845a06b7f2b2deede2, type: 3}
-  - {fileID: 8011950119853555136, guid: 6386c2b88754bf540bf473e247924212, type: 3}
-  - {fileID: 8739997054261819436, guid: 4a440835177cca741a4c5a21157ae865, type: 3}
-  - {fileID: 3017760806369441270, guid: 0fe26438d4895e849b5999a0acd0c709, type: 3}
-  MAX_LEVEL_SIZE: 20
+  MAX_LEVEL_SIZE: 30
+  newChunkThreshold: 0
 --- !u!4 &72012921
 Transform:
   m_ObjectHideFlags: 0
@@ -3956,10 +3957,10 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.01
+  near clip plane: -10
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -4574,6 +4575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc6a534bfd1cff94d82f73a4b5a29877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  procgen: {fileID: 72012920}
   rb: {fileID: 0}
   jumpHeight: 6
   MainCollider: {fileID: 0}

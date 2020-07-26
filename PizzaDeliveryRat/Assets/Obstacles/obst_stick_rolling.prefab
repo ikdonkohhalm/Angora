@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 4893220094733616153}
   - component: {fileID: 1602093179302265280}
   - component: {fileID: 3049923756175249113}
+  - component: {fileID: 9094247659097341043}
   m_Layer: 0
   m_Name: Rolling_Stick
   m_TagString: Obstacle
@@ -91,7 +92,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a4bbea244922a4b42a2888e9f173c44d, type: 2}
+  - {fileID: 2100000, guid: ade4bca79cc805649b4b763f53a20303, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -142,3 +143,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -493581522860377069, guid: ec329b15b2848704cb9adfab9feedf94, type: 3}
+--- !u!114 &9094247659097341043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9161380098923588434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86f4450534ac8ac4496728a03b5459bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrust: 2

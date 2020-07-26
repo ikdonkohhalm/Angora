@@ -4,21 +4,25 @@ using UnityEngine;
 
 public class script_player_move : MonoBehaviour
 {
+    public script_procgen procgen;
+
     public Rigidbody rb;
-    public float jumpHeight = 15;
+    public float jumpHeight = 15; //jump height
     public Collider MainCollider;
     public Collider[] AllColliders;
     public MeshRenderer meshRenderer;
     public float ragdollTime;
     public float ragdollCooldown;
-    float totalScore;
+    float totalScore; //total points earned
     float pizzaPoints = 1;
-    public float speed = 2;
-    public bool finished = false;
+    public float speed = 2; //speed
+    public bool finished = false; // true if timer has finished
     public bool ragdoll;
+
 
     private int nextPoint = 10; //next z point were score is increased
 
+    //links to scripts
     public script_ui_pizzatime linkToPizzaTimeScript;
     public script_ui_score linkToScoreScript;
     public script_ui_score linkToFinalScoreScript;
@@ -53,16 +57,14 @@ public class script_player_move : MonoBehaviour
             this.transform.rotation = new Quaternion(0,0,0,1);
 
             //translate based on key inputs. Move as long as key is pressed down
-            if (Input.GetKey("a")){
+            if (Input.GetKey("a")){ //move left
                 transform.Translate(-1* speed * Time.deltaTime, 0, 0);
             }
-            if (Input.GetKey("d")){
+            if (Input.GetKey("d")){// move right
                 transform.Translate(speed * Time.deltaTime, 0, 0);
 
             }
-            if (Input.GetKeyDown("w")){
-                //transform.Translate(0,jumpHeight * Time.deltaTime, 0);
-                //rb.velocity= new Vector3(0, 10*jumpHeight * Time.deltaTime, 0);
+            if (Input.GetKeyDown("w")){ //jump
                 rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
             }
             if (Input.GetKeyUp("space")){ // Pizza time
@@ -77,40 +79,34 @@ public class script_player_move : MonoBehaviour
         ragdollTime -= 1.0f;
         ragdollCooldown -= 1.0f;
 
-        if(this.transform.position.y < 1){
+        if(this.transform.position.y < 1){ //make sure above ground
             this.transform.position = new Vector3(this.transform.position.x, 1.5f, this.transform.position.z);
             //this.transform.Translate(new Vector3(0,1,0));
         }
         
-        if(this.transform.position.z >= nextPoint )
-        {
+        //increase score based on position
+        if(this.transform.position.z >= nextPoint ){
             totalScore += 2;
-            Debug.Log("POSITION CHANGE Score = " + totalScore);
+            //Debug.Log("POSITION CHANGE Score = " + totalScore);
             linkToScoreScript.update(totalScore);
             nextPoint += 10;
         }
-        //if(meshRenderer.transform.position.y <)
 
-        if (linkToTimerScript.getTimeDone() & !finished)
-        {
-            //calculate score based on time
-            /*
-            float finishScore = 100 - Time.time;
-            if (finishScore < 0)
-            {
-                finishScore = 0;
-            }
-            */
-            //totalScore += finishScore;
+        //if the timer is done and this code hasn't been run before
+        if (linkToTimerScript.getTimeDone() & !finished){
             Debug.Log("Score = " + totalScore);
             linkToFinalScoreScript.update(totalScore);
             
-
+            //stop player moving
             speed = 0;
             linkToMenuScript.isFinished = true;
-            //Time.timeScale = 0;
             finished = true;
         }
+
+        if (this.transform.position.z > procgen.newChunkThreshold){
+            procgen.spawnChunkSegment();
+        }
+
     }
 
     // <summary>
@@ -141,23 +137,6 @@ public class script_player_move : MonoBehaviour
             Debug.Log("Entering Ragdoll");
             DoRagdoll(true);
         }
-        /*
-        if(collision.gameObject.tag == "Finish" & !finished){
-            //calculate score based on time
-            float finishScore = 100- Time.time;
-            if (finishScore < 0){
-                finishScore = 0;
-            }
-            totalScore += finishScore;
-            Debug.Log("Score = " + totalScore);
-            linkToFinalScoreScript.update(totalScore);
-
-            speed = 0;
-            linkToMenuScript.isFinished =true;
-            //Time.timeScale = 0;
-            finished = true;
-        }
-        */
     }
 
     void OnTriggerEnter(Collider collider){

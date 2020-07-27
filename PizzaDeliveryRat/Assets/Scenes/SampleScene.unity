@@ -414,6 +414,7 @@ MonoBehaviour:
   - {fileID: 4708137884909300356, guid: 1e118756b8cb7664da164a33c96286bf, type: 3}
   - {fileID: 4718430160060934140, guid: eaa0c0dc3e2e6944ca31dbab501e97cd, type: 3}
   - {fileID: 2407813854464489367, guid: 456f3de7e2199fb4da0b8a6a43f117b1, type: 3}
+  - {fileID: 9117335742352512730, guid: 6ee356c695cbe024c9f6b73965170fd9, type: 3}
   MAX_LEVEL_SIZE: 30
   newChunkThreshold: 0
 --- !u!4 &72012921
@@ -707,7 +708,7 @@ GameObject:
   - component: {fileID: 305218374}
   m_Layer: 5
   m_Name: ui_timer_text
-  m_TagString: Untagged
+  m_TagString: Timer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

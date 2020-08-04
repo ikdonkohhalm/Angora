@@ -6,6 +6,7 @@ public class script_procgen : MonoBehaviour {
 
     public GameObject[] chunks; //Array of chunk_ and chunk_house_ files that are generated into the world
     public GameObject[] obstacles; //Array of obst_ and form_ files that are spawned as obstacles
+    public int previousRandomNumber = -1; //Keeps track of previous random number to ensure lack of dupes
     public int MAX_LEVEL_SIZE;
     public float newChunkThreshold;
 
@@ -77,11 +78,34 @@ public class script_procgen : MonoBehaviour {
         chunkLoc.x -= deltaLocX * 3;
 
         //Spawn house on the left grass chunk
-        if(count != 0 && count <= MAX_LEVEL_SIZE){
-            GameObject house = chunkMap["house_" + Random.Range(0, amtHouse).ToString()];
+        if(count != 0 && count <= MAX_LEVEL_SIZE)
+        {
+            //Instantiate randomHouse
+            int randomHouse = Random.Range(1, amtHouse);
+            
+            //If randomHouse is similar to the previous house, reroll the number with a while loop until it is different
+            if (randomHouse == previousRandomNumber)
+            {
+                while (randomHouse == previousRandomNumber)
+                {
+                    randomHouse = Random.Range(1, amtHouse);
+                }
+            }
+
+            //Create the house by using the randomHouse int
+            GameObject house = chunkMap["house_" + randomHouse.ToString()];
+            
+            //Debug logs I used (you can delete these if you want, they're expensive)
+            Debug.Log("Current house: " + randomHouse);
+            Debug.Log("Previous house: " + previousRandomNumber);
+            Debug.Log("Current chunk: " + house);
+
             chunkLoc.y += (deltaLocY / 2); //+ (house.GetComponent<BoxCollider>().size.y * house.GetComponent<Transform>().localScale.y) / 2;
             Instantiate(house, chunkLoc, house.transform.rotation);
             chunkLoc.y = 0;
+            
+            //Accumulate the previous random number
+            previousRandomNumber = randomHouse;
         }
 
         chunkLoc.z += deltaLocZ;

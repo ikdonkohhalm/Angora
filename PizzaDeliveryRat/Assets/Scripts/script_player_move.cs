@@ -57,10 +57,10 @@ public class script_player_move : MonoBehaviour
             this.transform.rotation = new Quaternion(0,0,0,1);
 
             //translate based on key inputs. Move as long as key is pressed down
-            if (Input.GetKey("a")){ //move left
+            if (Input.GetKey("a") && (transform.position.x>-5)){ //move left
                 transform.Translate(-1* speed * Time.deltaTime, 0, 0);
             }
-            if (Input.GetKey("d")){// move right
+            if (Input.GetKey("d") && (transform.position.x<5)){// move right
                 transform.Translate(speed * Time.deltaTime, 0, 0);
 
             }

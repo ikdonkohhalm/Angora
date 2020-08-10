@@ -64,10 +64,10 @@ public class script_player_move : MonoBehaviour
                 transform.Translate(speed * Time.deltaTime, 0, 0);
 
             }
-            if (Input.GetKeyDown("w")){ //jump
+            if (Input.GetKeyDown("space")){ //jump
                 rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
             }
-            if (Input.GetKeyUp("space")){ // Pizza time
+            if (Input.GetKeyUp("e")){ // Pizza time
                 pizzaTime();
                
             }

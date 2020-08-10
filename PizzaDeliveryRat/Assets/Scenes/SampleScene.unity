@@ -415,6 +415,7 @@ MonoBehaviour:
   - {fileID: 4718430160060934140, guid: eaa0c0dc3e2e6944ca31dbab501e97cd, type: 3}
   - {fileID: 2407813854464489367, guid: 456f3de7e2199fb4da0b8a6a43f117b1, type: 3}
   - {fileID: 9117335742352512730, guid: 6ee356c695cbe024c9f6b73965170fd9, type: 3}
+  previousRandomNumber: -1
   MAX_LEVEL_SIZE: 30
   newChunkThreshold: 0
 --- !u!4 &72012921
@@ -1155,6 +1156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 466273693}
+  scoreObject: {fileID: 0}
 --- !u!114 &466273693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3867,6 +3869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 959584014}
+  scoreObject: {fileID: 0}
 --- !u!114 &959584014
 MonoBehaviour:
   m_ObjectHideFlags: 0
